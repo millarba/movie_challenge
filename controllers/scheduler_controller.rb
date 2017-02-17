@@ -30,10 +30,6 @@ class SchedulerController
       runner_view.ask_if_user_is_finished
       user_choice = gets.chomp
 
-      if user_choice == "Lego Batman"
-        puts "Movie Times"
-      end
-
       if user_choice == 'end'
         exit_program 
       end

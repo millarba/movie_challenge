@@ -6,6 +6,7 @@ require_relative '../controllers/scheduler_controller.rb'
 
 #Models
 require_relative '../models/movie.rb'
+require_relative '../models/schedule.rb'
 
 #Views
 require_relative '../views/load_view.rb'

@@ -7,6 +7,7 @@ class Movie
     @rating = rating
   end
 
+
 end
 
 
@@ -16,6 +17,5 @@ la_la_land = Movie.new("La La Land", 127, "PG-13")
 
 moonlight = Movie.new("Moonlight", 95, "R")
 
-movies = [lego_batman, la_la_land, moonlight]
 
-p moonlight.name
+

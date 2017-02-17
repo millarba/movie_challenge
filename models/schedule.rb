@@ -52,7 +52,6 @@ class Schedule
           remaining_minutes -= 20
         end
     end
-    p "There are #{@possible_showings} showings"
   end
 
   def showings
@@ -78,8 +77,4 @@ lego_batman.possible_showings
 
 p lego_batman.showings
 
-lego_batman.showings.each do |showing|
-  puts showing.strftime("%I:%M")
-end
 
-p lego_batman.total_minutes
