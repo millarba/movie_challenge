@@ -54,19 +54,27 @@ class Schedule
     end
   end
 
-  def showings
+  def calculate_showings
     today = Time.now
     number_of_showings = @possible_showings
 
     open = Time.new(today.year, today.month, today.day, start_hour, start_minute)
 
-    showings = []
+    @calculated_showings = []
     while number_of_showings > 0
       number_of_showings -= 1
-      showings << open
+      @calculated_showings << open
       open = open + (60 * (divisible_runtime + 20 + 15))
     end
-    showings
+    @calculated_showings
+  end
+
+  def showings
+    @showings = []
+    @calculated_showings.each do |showing|
+      @showings << showing.strftime( "%I:%M" )
+    end
+    @showings
   end
 
 end
