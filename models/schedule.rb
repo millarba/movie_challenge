@@ -13,45 +13,52 @@ class Schedule
     until divisible_runtime % 5 == 0
       divisible_runtime += 1
     end
-    divisible_runtime
+  p  divisible_runtime
   end
 
-  def possible_showtimes
+  def possible_showings
     @showings = 0
     remaining_minutes = total_weekday_minutes
     while remaining_minutes >= @runtime
       remaining_minutes -= 15
-        if remaining_minutes >=0
+        if remaining_minutes >= divisible_runtime
           p remaining_minutes
           remaining_minutes -= divisible_runtime
           @showings += 1
         end
-          if remaining_minutes >= 0 
-
-            remaining_minutes -= 20
-          end
+        if remaining_minutes >= 0 
+          remaining_minutes -= 20
+        end
     end
-    @showings
+    p @showings
   end
 
-  def determine_showtimes
-    time = Time.now
-    total_showings = @showings
-    while total_showings > 0
-      time += (60 * (divisible_runtime + 15 + 20))
-      total_showings -= 1
-      p time
-      p total_showings
-    end
+  def showings
+    today = Time.now
+    number_of_showings = @showings
 
+    open = Time.new(today.year, today.month, today.day, 11, 15)
+
+    showings = []
+    while number_of_showings > 0
+      p number_of_showings
+      showings << open
+      open = open + (60 * 160)
+      number_of_showings -= 1
+    end
+    showings
   end
 
 
 end
 
-lego_batman = Schedule.new(124)
+lego_batman = Schedule.new(114)
 
-lego_batman.possible_showtimes
+lego_batman.possible_showings
 
-p lego_batman.determine_showtimes
+p lego_batman.showings
+
+lego_batman.showings.each do |showing|
+  puts showing.strftime("%I:%M")
+end
 
