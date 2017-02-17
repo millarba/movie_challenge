@@ -4,8 +4,13 @@ class Schedule
     @runtime = runtime
   end
 
-  def total_weekday_minutes
-    12 * 60
+  def total_minutes
+    today = Time.now
+    if today.monday? || today.tuesday? || today.wednesday? || today.thursday?
+      total_minutes = 12 * 60
+    else
+      total_minutes = 13.5 * 60
+    end
   end
 
   def divisible_runtime
@@ -18,7 +23,7 @@ class Schedule
 
   def possible_showings
     @possible_showings = 0
-    remaining_minutes = total_weekday_minutes
+    remaining_minutes = total_minutes
     while remaining_minutes >= @runtime
       remaining_minutes -= 15
       
@@ -49,10 +54,9 @@ class Schedule
     showings
   end
 
-
 end
 
-lego_batman = Schedule.new(132)
+lego_batman = Schedule.new(102)
 
 lego_batman.possible_showings
 
