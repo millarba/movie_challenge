@@ -24,9 +24,15 @@ class SchedulerController
 
     until finished
       # logic for your program
-
+      movies.each do |movie|
+        p movie.name
+      end
       runner_view.ask_if_user_is_finished
       user_choice = gets.chomp
+
+      if user_choice == "Lego Batman"
+        puts "Movie Times"
+      end
 
       if user_choice == 'end'
         exit_program 

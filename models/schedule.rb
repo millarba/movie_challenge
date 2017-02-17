@@ -6,10 +6,26 @@ class Schedule
 
   def total_minutes
     today = Time.now
-    if today.monday? || today.tuesday? || today.wednesday? || today.thursday?
-      total_minutes = 12 * 60
-    else
+    if today.friday? || today.saturday? || today.sunday?
       total_minutes = 13.5 * 60
+    else
+      total_minutes = 12 * 60
+    end
+  end
+
+  def start_hour
+    if total_minutes == 720
+      start_hour = 11
+    else
+      start_hour = 10
+    end
+  end
+
+  def start_minute
+    if total_minutes == 720
+      start_minute = 15
+    else
+      start_minute = 45
     end
   end
 
@@ -43,7 +59,7 @@ class Schedule
     today = Time.now
     number_of_showings = @possible_showings
 
-    open = Time.new(today.year, today.month, today.day, 11, 15)
+    open = Time.new(today.year, today.month, today.day, start_hour, start_minute)
 
     showings = []
     while number_of_showings > 0
@@ -66,3 +82,4 @@ lego_batman.showings.each do |showing|
   puts showing.strftime("%I:%M")
 end
 
+p lego_batman.total_minutes
