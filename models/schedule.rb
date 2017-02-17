@@ -54,35 +54,30 @@ class Schedule
     end
   end
 
-  def calculate_showings
+  def showings
+    possible_showings
     today = Time.now
     number_of_showings = @possible_showings
 
     open = Time.new(today.year, today.month, today.day, start_hour, start_minute)
 
-    @calculated_showings = []
+    showings = []
     while number_of_showings > 0
       number_of_showings -= 1
-      @calculated_showings << open
+      showings << open
       open = open + (60 * (divisible_runtime + 20 + 15))
     end
-    @calculated_showings
-  end
 
-  def showings
-    @showings = []
-    @calculated_showings.each do |showing|
-      @showings << showing.strftime( "%I:%M" )
+    showings.each do |showing|
+      puts showing.strftime("%I:%M")
     end
-    @showings
   end
 
 end
 
 lego_batman = Schedule.new(102)
 
-lego_batman.possible_showings
 
-p lego_batman.showings
+lego_batman.showings
 
 
